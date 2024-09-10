@@ -1,0 +1,59 @@
+.eventListContainer {
+    display: flex;
+    height: 300px;
+    overflow-y: auto;
+    flex-direction: column;
+    background-color: lightcyan;
+}
+
+.eventListFilter {
+    background-color: rgb(138, 209, 209);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: small;
+    cursor: pointer;
+    position: relative;
+}
+
+.eventContainer {
+    display: flex;
+    width: 80%;
+    max-width: 700px;
+    flex-direction: column;
+    background-color: lightcyan;
+}
+
+.eventFilterContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.eventFilterSubContainer {
+    display: flex;
+    align-items: center;
+}
+
+.hoverText {
+    display: none;
+    background-color: #555;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute; /* Positioned relative to the parent (.element) */
+    z-index: 1;
+  
+    /* Position below the element */
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: small;
+    width: auto;
+  }
+  
+  .eventListFilter:hover .hoverText {
+    display: block;
+  }
+
+  .eventListFilterActive{
+    background-color: cyan;
+  }

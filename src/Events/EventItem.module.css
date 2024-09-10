@@ -1,0 +1,42 @@
+.eventItem {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 5px;
+    background-color: lightblue;
+}
+.expandButton {
+    cursor: pointer;
+}
+.eventTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.eventHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.eventIcon {
+    padding: 5px;
+    height: 20px;
+    width: 20px;
+}
+.eventDescription {
+    display: none;
+    padding: 5px;
+    border-radius: 5px;
+    border-width: 5px;
+    font-size: small;
+    width: 98%;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: grey;
+  }
+
+  .eventDescriptionActive {
+    display: block;
+    max-height: 500px; /* Expanded height (adjust this as needed) */
+  }

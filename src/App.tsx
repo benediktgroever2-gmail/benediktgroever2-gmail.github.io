@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import EventContainer from './Events/EventContainer';
+import { EventType, Event } from './Events/EventItem';
 
 function App() {
+  const [events, setEvents] = useState<Event[]>([]);
+  const callStartTimeMs = Date.now();  // assuming you have some reference start time
+
+  // Function to generate a random event
+  const addRandomEvent = () => {
+    const eventTypes = [EventType.Compedition, EventType.Product]; // Add your event types here
+    const randomType = eventTypes[Math.floor(Math.random() * eventTypes.length)];
+    const timeMs = Date.now() - callStartTimeMs
+    const event = {
+      id: `${timeMs}`,
+      type: randomType,
+      timeMs: timeMs,  // current time relative to the call start
+    };
+    setEvents((prevEvents) => {
+      return [...prevEvents, event]
+    });
+  };
+
+  // useEffect to generate events at random intervals
+  useEffect(() => {
+    const createRandomInterval = () => {
+      const randomTime = Math.random() * 10000; // Random time between 0 and 4000 ms (0 to 4 seconds)
+      return setTimeout(() => {
+        addRandomEvent();
+        createRandomInterval();  // Recursively create new random intervals
+      }, randomTime);
+    };
+
+    const timeoutId = createRandomInterval(); // Start the first event
+
+    // Cleanup function to clear the interval on unmount
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <EventContainer events={events} callStartTimeMs={callStartTimeMs} />
   );
 }
 
